@@ -57,6 +57,8 @@ claude
 | 📝 歌词时间文件 `.lrc` | 去 **[lrclib.net](https://lrclib.net)** 搜歌名，下载"synced lyrics"。免费、不用注册。没有也行，AI 会用语音识别找时间（慢一些） |
 | 🎨 想要的风格（可选） | `8bit 像素` 或 `扁平 Q 版`；不说的话 AI 会按歌的气质推荐 |
 
+**没有歌也能先试**：`python demo/make_demo_song.py` 会生成一首代码写的 8bit 演示歌《纸飞机》和原创歌词 .lrc，免版权，做出来可以随便发。
+
 默认先做一段 **30–60 秒**（一段主歌 + 一段副歌），满意了再做完整版。一首 4 分钟的歌，完整做下来要几个小时。
 
 ## 它是怎么工作的
@@ -89,6 +91,7 @@ tools/lyrics_timing/    .lrc → 时间轴、节拍与段落、语音识别对�
 tools/review/           五项画面指标、抽帧拼图、逐镜对照、字幕遮挡检查
 tools/package/          封面（横 / 竖）、上下对比拼接
 examples/               《告白气球》《蝴蝶》完整工程
+demo/                   生成免版权演示歌《纸飞机》（8bit 旋律 + 原创歌词）
 skill/                  打包成 Claude / Codex skill
 ```
 

@@ -63,6 +63,8 @@ Clone and open Codex in the repo (it reads `AGENTS.md`), or unzip `lyricframe-sk
 | 📝 a synced lyrics file `.lrc` | search the song on **[lrclib.net](https://lrclib.net)** and download the synced lyrics — free, no account. Without one the AI finds line times by speech recognition (slower). |
 | 🎨 a style (optional) | `8bit pixel` or `flat chibi`; otherwise the AI recommends one |
 
+**No song? Try the demo**: `python demo/make_demo_song.py` writes a free 8bit tune, "Paper Plane", with original synced lyrics — post the result anywhere.
+
 By default it makes a **30–60 s clip** (one verse + one chorus) first; the full song once you like it.
 A full 4-minute song takes a few hours.
 
@@ -97,6 +99,7 @@ tools/lyrics_timing/    .lrc → timing, beats & sections, speech-recognition al
 tools/review/           five picture metrics, contact sheets, shot-by-shot check, subtitle-safe check
 tools/package/          covers (landscape / portrait), top-bottom comparison
 examples/               two complete projects
+demo/                   generates a free demo song with original lyrics
 skill/                  packaging as a Claude / Codex skill
 ```
 

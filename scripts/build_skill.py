@@ -9,7 +9,7 @@ import os
 import zipfile
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-INCLUDE = ['AGENTS.md', 'LICENSE', 'requirements.txt', 'docs', 'templates', 'styles', 'tools', 'examples']
+INCLUDE = ['AGENTS.md', 'LICENSE', 'requirements.txt', 'docs', 'templates', 'styles', 'tools', 'examples', 'demo']
 SKIP_DIRS = {'__pycache__', '.git', 'dist', 'media', 'projects', 'work', 'out'}
 SKIP_EXT = {'.pyc', '.mp4', '.mp3', '.wav', '.gif', '.lrc'}
 
