@@ -27,7 +27,7 @@ Then **read `AGENTS.md` in that folder and follow it exactly** — it is the ste
 manual (gather → timing → story → one picture per line → storyboard → style test → build → check →
 deliver), with the commands for every step. Full reasoning: `docs/en/workflow.md` (中文
 `docs/zh/workflow.md`). Two finished projects to imitate: `examples/hudie`, `examples/gaobai-qiqiu`.
-A ready-to-copy project: `templates/starter`.
+Ready-to-copy projects that already render: `templates/starter-pixel8bit`, `templates/starter-flatq`.
 
 ## Rules that never bend
 

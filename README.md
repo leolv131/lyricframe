@@ -92,7 +92,7 @@ Full workflow: [docs/en/workflow.md](docs/en/workflow.md) · checklist: [docs/en
 ```
 AGENTS.md / CLAUDE.md   the director's manual the AI follows
 docs/                   full workflow and checklist (中文 / English)
-templates/              story, per-line pictures, storyboard templates + a runnable starter/ project
+templates/              story, per-line pictures, storyboard templates + runnable starter projects (one per style)
 styles/pixel8bit/       8bit pixel toolkit (characters, expressions, places, lighting, UI, render) + fonts
 styles/flatq/           flat chibi toolkit (skia vector) + fonts
 tools/lyrics_timing/    .lrc → timing, beats & sections, speech-recognition alignment, subtitle burning

@@ -222,14 +222,21 @@ projects/<song>/
 │  ├─ lf_path.py           puts styles/<style> on the path
 │  ├─ common.py            palette, character looks, the core places
 │  ├─ ch1.py … chN.py      one file per chapter, one function per shot: s07(t, D)
-│  └─ make.py              render all / a range / one still / 720p preview / shot list
+│  └─ make.py              lists the shots; options in tools/lf_make.py (range, still, 720p, shot list)
 └─ out/                    previews, check sheets, final video
 ```
-Start from `templates/starter/`; two finished projects are in `examples/`.
+Copy `templates/starter-pixel8bit/` or `templates/starter-flatq/` (they already render: lighting, character
+compositing, sample shots); two finished projects are in `examples/`.
+
+```bash
+python src/make.py --still 12.5               # one frame -> out/stills/
+python src/make.py --preview --subs           # 720p preview + a lyrics-burned copy for the user
+python src/make.py --jobs 4                   # 1080p final -> out/final.mp4
+```
 
 **Per chapter**
 1. Render a **720p preview** and send it; rework only that chapter if needed.
-2. **Burn subtitles into the preview** (`render(..., srt=...)`; previews only, never the final) so the
+2. **Burn subtitles into the preview** (`make.py --preview --subs`; previews only, never the final) so the
    user can judge "is this the right picture for this line".
 3. **Shot-by-shot check** (before showing any preview): `tools/review/shot_check.py` — the middle frame
    of each shot next to "must be visible"; look at the phone-size version too. Anything written but

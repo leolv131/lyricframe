@@ -56,6 +56,18 @@ def _grain():
 _GRAIN = None
 
 
+_VIG = {}
+
+
+def _vignette(k):
+    """Cached vignette multiplier (H, W, 1). 暗角只算一次。"""
+    if k not in _VIG:
+        yy, xx = np.ogrid[0:H, 0:W]
+        d = ((xx - W / 2) / (W / 2)) ** 2 + ((yy - H / 2) / (H / 2)) ** 2
+        _VIG[k] = (1 - k * np.clip(d - 0.35, 0, 1))[:, :, None]
+    return _VIG[k]
+
+
 class Frame:
     """One frame. Use .c (skia.Canvas) or the helpers."""
 
@@ -164,9 +176,7 @@ class Frame:
             if _GRAIN is None: _GRAIN = _grain()
             a += _GRAIN[:, :, None] * (255 * grain)
         if vignette:
-            yy, xx = np.ogrid[0:H, 0:W]
-            d = ((xx - W / 2) / (W / 2)) ** 2 + ((yy - H / 2) / (H / 2)) ** 2
-            a *= (1 - vignette * np.clip(d - 0.35, 0, 1))[:, :, None]
+            a *= _vignette(vignette)
         return np.clip(a, 0, 255).astype(np.uint8)
 
     def save(self, path, **kw):

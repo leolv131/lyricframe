@@ -21,7 +21,7 @@ Used for: 《告白气球》, 《蝴蝶》 (see `examples/`). Rendering ≈ 1 s 
 | `example.py` | minimal two-shot example |
 | `fonts/` | WenQuanYi Zen Hei + GNU Unifont, subset to GB2312 + Latin + symbols (licences inside) |
 
-A complete starting project is in [`templates/starter/`](../../templates/starter/).
+A complete starting project that already renders is in [`templates/starter-pixel8bit/`](../../templates/starter-pixel8bit/).
 
 ## Characters / 角色
 

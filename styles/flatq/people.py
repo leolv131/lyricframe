@@ -300,3 +300,11 @@ def symbol(f, kind, x, y, s=1.0, t=0.0):
             r = math.radians(a * 90)
             f.line(x, y, x + math.cos(r) * 16 * s, y + math.sin(r) * 16 * s, '#ffe27a', 5 * s)
         f.circle(x, y, 5 * s, '#ffffff')
+
+
+def feet_for_head(head_cy, s=1.0, sit=False):
+    """Where to put `feet` so the head centre lands at head_cy. 按头的位置反推脚的位置。
+
+    Framing guide (1920x1080): wide s≈0.45 · medium s≈0.8–1.0 · close-up s≈1.6–2.2 (feet below the
+    frame; pass hide_legs=True) · extreme close-up: call head() directly with s≈3."""
+    return head_cy + (188.4 if sit else 270.4) * s

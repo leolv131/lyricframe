@@ -1,0 +1,9 @@
+{
+  "title": "Starter",
+  "artist": "",
+  "audio": "assets/song.mp3",
+  "clip": {"start": 0.0, "end": 15.0},
+  "aspect": "16:9",
+  "style": "flatq",
+  "mood": "bright"
+}

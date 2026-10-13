@@ -42,9 +42,9 @@ v3 那版失败的样片是 v3.1 最重要的一条规则的来源：**任何时
 
 ## 运行
 ```bash
-cd examples/hudie/src
-python make.py --still 130                      # 看一帧
-python make.py --start 117.5 --end 143.3 --preview   # 副歌 2，720p，无声
-python make.py --song 你的音源.mp3               # 整片 1080p 配原曲
-python make_cover.py
+cd examples/hudie
+python src/make.py --still 130                      # 看一帧
+python src/make.py --no-song --start 117.5 --end 143.3 --preview   # 副歌 2，720p，无声
+python src/make.py --all --song 你的音源.mp3              # 整片 1080p 配原曲
+python src/make_cover.py
 ```

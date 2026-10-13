@@ -40,9 +40,9 @@
 
 ## 运行
 ```bash
-cd examples/gaobai-qiqiu/src
-python make.py --still 68                      # 看一帧
-python make.py --start 23 --end 44 --preview   # 21 秒、720p、无声
-python make.py --song 你的音源.mp3              # 整片 1080p 配原曲
-python make_cover.py                           # 封面
+cd examples/gaobai-qiqiu
+python src/make.py --still 68                      # 看一帧
+python src/make.py --no-song --start 23 --end 44 --preview   # 21 秒、720p、无声
+python src/make.py --all --song 你的音源.mp3             # 整片 1080p 配原曲
+python src/make_cover.py                           # 封面
 ```

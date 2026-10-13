@@ -4,7 +4,7 @@
 Flat vector chibi style at 1920×1080 with skia: outlines, flat fills, paper grain, halftone.
 
 Built for a Henan road-trip song (an electric bike, a pink helmet, a map of 18 cities); the
-props and scene parts from that film are kept in `common.py` / `props.py` as examples.
+props and scene parts from that film are kept in `fq_scenes.py` / `props.py` as examples.
 
 ## Files / 文件
 
@@ -13,7 +13,7 @@ props and scene parts from that film are kept in `common.py` / `props.py` as exa
 | `fq.py` | `Frame` (rect, circle, oval, line, poly, curve, blob, vgrad, radial, text, push/pop camera, `array()` with grain + vignette), colours `C`, `mixc`, easing, `halftone`, bundled Noto Sans SC |
 | `people.py` | characters `draw(f, who, x, feet, s, pose, expr, t)`, `head(...)`, `symbol(...)`; `who`: `he` `he_work` `she` `npc` |
 | `props.py` | phone status bar, helmet, noodle bowl, e-bike, skyline, road, street lamps, room, table, stool, big hand, road sign, sunburst |
-| `common.py` | phone frame, photo, clouds, sheep, rain, speed lines, speech bubble, confetti, traffic light, zebra crossing, night market, office, coffee, a province map with city icons, highway scenes |
+| `fq_scenes.py` | phone frame, photo, clouds, sheep, rain, speed lines, speech bubble, confetti, traffic light, zebra crossing, night market, office, coffee, a province map with city icons, highway scenes |
 | `render.py` | `render(timeline, t0, t1, out, song=None, fade_in, fade_out, scale)` — shot functions are `fn(t, dur) -> Frame` |
 | `sample.py` | a 4-shot emotional test clip (night, a bowl of noodles, riding alone) |
 | `fonts/` | Noto Sans SC Bold / Black, subset to GB2312 + Latin + symbols (SIL OFL) |
@@ -42,3 +42,5 @@ Speed: skia is slower than pixel8bit (≈ 3–6 s of compute per second of 1080p
 720p previews with `scale=0.667`.
 
 Rules: [`STYLE.md`](STYLE.md).
+
+A starting project that already renders: [`templates/starter-flatq/`](../../templates/starter-flatq/).

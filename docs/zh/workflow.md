@@ -219,17 +219,23 @@ projects/<歌名>/
 │  ├─ lf_path.py            把 styles/<风格> 加入路径
 │  ├─ common.py             本片共用：色板、角色外观、场景零件
 │  ├─ ch1.py … chN.py       每章一个文件，每镜一个函数 shot(t, D)
-│  └─ make.py               渲染入口：整片 / 片段 / 单帧 / 720p 预览
+│  └─ make.py               只列镜头；渲染选项见 tools/lf_make.py（整片 / 片段 / 单帧 / 720p 预览 / 镜头表）
 └─ out/                     预览、检查图、成片
 ```
 
-从 `templates/starter/` 复制一份开始（已经有布光、人物合成、三个示范镜头）；两个完整案例见 `examples/`。
+按画风复制 `templates/starter-pixel8bit/` 或 `templates/starter-flatq/` 开始（已经能直接渲染，有布光、人物合成、示范镜头）；两个完整案例见 `examples/`。
+
+```bash
+python src/make.py --still 12.5               # 单帧 -> out/stills/
+python src/make.py --preview --subs           # 720p 预览 + 叠字幕的预览（只给用户看）
+python src/make.py --jobs 4                   # 1080p 成片 -> out/final.mp4
+```
 
 **每章的流程**
 
 1. 写完一章就渲染 **720p 预览**发给用户，有问题只返工该章。
-2. 预览里**叠字幕**（`render(..., srt=...)`，只在预览里叠，成片不叠），方便用户判断"这句唱的时候画面对不对"。
-3. **逐镜对照**（交付预览前必须做）：`python src/make.py --shots-json out/shots.json` 导出镜头表，再 `python tools/review/shot_check.py out/预览.mp4 --shots out/shots.json --offset <起>`，每镜取中间一帧拼成检查图，和分镜的"必须看得见"逐条对照；缩到手机大小看一遍。写了没画出来、画了看不清的，当场返工。
+2. 预览里**叠字幕**（`make.py --preview --subs`，只在预览里叠，成片不叠），方便用户判断"这句唱的时候画面对不对"。
+3. **逐镜对照**（交付预览前必须做）：`python src/make.py --shots-json` 导出镜头表，再 `python tools/review/shot_check.py out/预览.mp4 --shots out/shots.json --offset <起>`，每镜取中间一帧拼成检查图，和分镜的"必须看得见"逐条对照；缩到手机大小看一遍。写了没画出来、画了看不清的，当场返工。
 4. **美术精修**：信物、手、信件等关键道具单独精修；背景加纹理和手工细节（招牌、杂物、晾晒），不留大片纯色；检查色板。
 
 **并行**：支持子代理的环境（如 Claude Code），可以在 `STYLE_GUIDE.md` 和 `common.py` 定好后，按章分给多个子代理并行写，最后统一渲染。
@@ -241,7 +247,7 @@ projects/<歌名>/
 1080p 正式渲染、拼接、配原曲。然后跑：
 
 ```bash
-python src/make.py --song assets/song.mp3 --start <起> --end <止> --out out/final.mp4
+python src/make.py --jobs 4                    # 片段范围和音频读 project.json
 python tools/review/metrics.py out/final.mp4            # 五项量化指标
 python tools/review/contact_sheet.py out/final.mp4      # 均匀抽 20 帧拼图
 python tools/review/subtitle_safe.py out/final.mp4 --timing work/timing.json --offset <起>   # 字幕遮挡检查

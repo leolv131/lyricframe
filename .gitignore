@@ -15,4 +15,4 @@ out/
 lyrics.srt
 still_*.png
 out*.mp4
-examples/*/src/cover.png
+examples/*/out/

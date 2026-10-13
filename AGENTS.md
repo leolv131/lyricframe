@@ -52,11 +52,22 @@ projects/<song>/
 ├─ work/timing.json             times only — the only lyrics-derived file you read
 ├─ work/lyrics.srt  music.json  timing_report.txt
 ├─ MUSIC_MAP.md  STORY.md  LYRIC_SHOTS.md  STORYBOARD.md  STYLE_GUIDE.md
-├─ src/  lf_path.py  common.py  ch1.py … chN.py  make.py
+├─ src/  lf_path.py  common.py (or world.py)  ch1.py … chN.py  make.py
 └─ out/                         previews, check sheets, final video, covers
 ```
 
-Copy `examples/<one>/src/lf_path.py` and `make.py` as a starting point.
+Start by copying the starter for the chosen style — it already renders:
+`cp -r templates/starter-pixel8bit projects/<song>` (or `templates/starter-flatq`), then edit
+`project.json` and write your chapters. `src/make.py` only lists the shots; all options live in
+`tools/lf_make.py` (`python src/make.py --help`).
+
+```bash
+python src/make.py --still 12.5 30           # PNG stills -> out/stills/
+python src/make.py --preview --subs          # 720p clip -> out/preview.mp4 (+ out/preview_subs.mp4 for the user)
+python src/make.py --shots-json              # -> out/shots.json for shot_check.py
+python src/make.py --jobs 4                  # final 1080p with the song -> out/final.mp4
+```
+Audio, clip range and style come from `project.json`; `--start/--end`, `--all`, `--no-song` override.
 
 ---
 
@@ -132,9 +143,10 @@ python tools/lyrics_timing/preview_timing.py assets/song.mp3 work/timing.json --
   dark"). Sweet songs stay bright; light only dusk and night.
 - One file per chapter, one function per shot: `def s07(t, D): ... return cv` (t = seconds into
   the shot, D = shot length). Never use randomness without a fixed seed; never use wall-clock time.
-- After each chapter: render a 720p preview with subtitles burned in **for the preview only**
-  (`render(..., scale=4, srt='work/lyrics.srt')`), then
-  `python tools/review/shot_check.py out/chN.mp4 --shots out/shots.json --offset <start>` and
+- After each chapter: `python src/make.py --preview --subs --start <a> --end <b> --out out/chN.mp4`
+  (the `_subs` copy, with lyrics burned in, is **for showing the user only**), then
+  `python src/make.py --shots-json` and
+  `python tools/review/shot_check.py out/chN.mp4 --shots out/shots.json --offset <a>` and
   compare each frame with "must be visible"; fix anything missing or unreadable before showing.
 - Polish the token, hands and letters in close-ups; add texture and small details to backgrounds.
 - If you can run sub-agents, split chapters between them after `STYLE_GUIDE.md` and `common.py`
@@ -142,7 +154,7 @@ python tools/lyrics_timing/preview_timing.py assets/song.mp3 work/timing.json --
 
 ### 7 · Assemble and check ✋
 ```bash
-python src/make.py --song assets/song.mp3 --start <s> --end <e> --out out/final.mp4
+python src/make.py --jobs 4                                    # -> out/final.mp4 (clip from project.json)
 python tools/review/metrics.py out/final.mp4 --mood moody      # or bright
 python tools/review/contact_sheet.py out/final.mp4
 python tools/review/subtitle_safe.py out/final.mp4 --timing work/timing.json --offset <s>
@@ -169,7 +181,8 @@ characters (`char`, `head`, `symbol`), `scenes.py` skies/places, `ui.py` dialogs
 `render.py`. Integer-pixel motion only; "zoom" by drawing bigger, not scaling.
 
 **flatq** (`styles/flatq`, 1920×1080 vector via skia): `fq.py` frame & shapes & text,
-`people.py` characters, `props.py` props & HUD, `common.py` scenes, `render.py`, `sample.py`.
+`people.py` characters (`feet_for_head` for framing), `props.py` props & HUD, `fq_scenes.py`
+places/weather/particles, `render.py`, `sample.py`.
 
 Character sizes (pixel8bit head height): wide 14, medium 24–34, close 44, extreme close ≥ 36
 (fine facial features switch on automatically).

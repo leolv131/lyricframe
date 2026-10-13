@@ -84,7 +84,7 @@ claude
 ```
 AGENTS.md / CLAUDE.md   给 AI 读的导演手册
 docs/                   完整工作流、自检清单（中 / 英）
-templates/              故事、逐句画面表、分镜等模板 + 一个可以直接跑的起步工程 starter/
+templates/              故事、逐句画面表、分镜等模板 + 每种画风一个可以直接跑的起步工程
 styles/pixel8bit/       8bit 像素工具包（角色、表情、场景、布光、界面、渲染）+ 字体
 styles/flatq/           扁平 Q 版工具包（skia 矢量）+ 字体
 tools/lyrics_timing/    .lrc → 时间轴、节拍与段落、语音识别对齐、烧字幕
