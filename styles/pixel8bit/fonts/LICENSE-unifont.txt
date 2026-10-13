@@ -1,0 +1,63 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: GNU Unifont Glyphs
+Upstream-Contact: Paul Hardy <unifoundry@unifoundry.com>
+Source: https://unifoundry.com/unifont/
+
+Files: *
+Copyright: 1998-?    Jungshik Shin
+           1998-2014 Roman Czyborra
+           2004-2013 Qianqian Fang
+           2005      Luis Alejandro Gonzalez Miranda
+           2007-2019 Paul Hardy <unifoundry@unifoundry.com>
+           2013-2014 Andrew Miller
+           2017-2019 David Corbett
+           2018      Johnnie Weaver
+License: GPL-2+
+Comment: all copyright notices was taken from the source code. Some dates
+         were confirmed in upstream changelog.
+
+Files: doc/unifont.info
+       doc/unifont.texi
+Copyright: 2008-2019 Paul Hardy <unifoundry@unifoundry.com>
+License: GFDL-NIV
+
+Files: debian/*
+Copyright: 1999-2002 Bart Schuller <schuller@debian.org>
+           2006      Christoph Berg <myon@debian.org>
+           2006      Matej Vela <vela@debian.org>
+           2007      Robert Millan <rmh@aybabtu.com>
+           2008      Anthony Fok <foka@debian.org>
+           2008-2019 Paul Hardy <unifoundry@unifoundry.com>
+           2011      Christian Perrier <bubulle@debian.org>
+           2013      Colin Watson <cjwatson@debian.org>
+           2013      Paul Wise <pabs@debian.org>
+           2013      Samuel Bronson <naesten@gmail.com>
+           2017      Helmut Grohne <helmut@subdivi.de>
+           2019-2020 Joao Eriberto Mota Filho <eriberto@debian.org>
+License: GPL-2+
+
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License version 2 can be found in "/usr/share/common-licenses/GPL-2".
+
+License: GFDL-NIV
+ Permission is granted to copy, distribute and/or modify this document
+ under the terms of the GNU Free Documentation License, Version 1.3
+ or any later version published by the Free Software Foundation;
+ with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+ .
+ On Debian systems, the complete text of the GNU Free Documentation License
+ version 1.3 can be found in `/usr/share/common-licenses/GFDL-1.3'.

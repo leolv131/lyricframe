@@ -1,0 +1,5 @@
+numpy>=1.24
+pillow>=10.0
+skia-python>=87.5        # flatq style only
+librosa>=0.10            # tools/lyrics_timing/music_map.py
+imageio-ffmpeg>=0.4.9    # used only when ffmpeg is not installed

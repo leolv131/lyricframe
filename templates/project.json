@@ -1,0 +1,13 @@
+{
+  "title": "歌名 / Song title",
+  "artist": "原唱 / Original artist",
+  "audio": "assets/song.mp3",
+  "lrc": "assets/song.lrc",
+  "clip": {"start": 60.0, "end": 115.0, "note": "默认做 30–60 秒片段；完整版把 start/end 设成 0 和全长 / default is a 30–60 s clip"},
+  "aspect": "16:9",
+  "size": [1920, 1080],
+  "style": "pixel8bit",
+  "mood": "moody",
+  "output_dir": "out",
+  "pace": "stop at every gate | no stops (one go)"
+}
