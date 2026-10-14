@@ -1,4 +1,4 @@
-# LyricFrame workflow (v3.1)
+# LyricFrame workflow (v4.0)
 
 > An animated music video for a song that already exists: **the AI does not call a video model; it
 > writes code that draws every frame**, then ffmpeg adds the original song. Characters are drawn by
@@ -17,6 +17,9 @@
    key objects separately.
 3. **Light before objects; fewer cuts, wider views, always moving; one metaphor per song.**
 4. **The main character must always be clearly visible.** Atmosphere never wins over legibility.
+5. **(v4) People and places are *drawn*, not *assembled* from geometric shapes.** Every pose and every
+   close-up is drawn on its own; buildings have parts and materials; framing varies and the camera keeps
+   drifting; richness is measured with a script. See "Drawing rules".
 
 Where these rules come from (frame-by-frame comparisons with well-received AI MVs) is in the appendix.
 
@@ -38,8 +41,8 @@ Where these rules come from (frame-by-frame comparisons with well-received AI MV
 | 2 Story ✋ | understanding → one concrete story → one metaphor → palette | `STORY.md` |
 | 3 One picture per line ✋ | **a picture hook for every line** (the key step) | `LYRIC_SHOTS.md` |
 | 4 Storyboard ✋ | times, framing, camera, beat hits, what must be visible | `STORYBOARD.md` |
-| 5 Style & emotion test ✋ | style rules, character sheet, one 5–8 s emotional shot | `STYLE_GUIDE.md`, stills, test clip |
-| 6 Build | code per chapter, 720p previews, shot-by-shot checks | `src/`, previews |
+| 5 Style & emotion test ✋ | style rules, **character sheet ✋**, scene-parts sheet, one 5–8 s emotional shot | `STYLE_GUIDE.md`, sheets, stills, test clip |
+| 6 Build | code per chapter, 720p previews, shot-by-shot, drawing and richness checks | `src/`, previews |
 | 7 Assemble & check ✋ | 1080p render with the song, checklist, metrics | first cut, check sheets |
 | 8 Deliver | clean + subtitled versions, covers, optional comparison and post text | video, covers, subtitles |
 
@@ -50,6 +53,53 @@ Where these rules come from (frame-by-frame comparisons with well-received AI MV
 
 **Default length**: a 30–60 s clip (one verse + one chorus) first; the full song once they like it.
 A full 4-minute song takes a few hours.
+
+---
+
+## Drawing rules (v4, every style)
+
+v3 fixed light, camera and restraint, but pictures still looked thin, because characters were
+*assembled* by code: a circle for a head, an ellipse for a body, a line for an arm, then pixelated or
+outlined. Up close it shows — egg-shaped bodies, arms growing out from behind the head, two heads
+overlapping, a back view that is just the front in another colour, a building made of a few lines, and
+close-ups that look empty.
+
+Well-received code-drawn MVs work differently: **everything is drawn fresh for each film, but every
+picture is fully drawn** — each pose of each character is a finished image (shoulder line, sleeve folds,
+hem, highlights), buildings have window frames, AC units and laundry, and the camera keeps drifting.
+
+> **The two styles shipped here (`pixel8bit`, `flatq`) still use parametric, assembled characters**, and
+> the two examples are v3.1 work. Reuse their render pipeline, lighting, grading, particles and
+> subtitles; **draw the characters and places for each film according to this section.**
+
+**People and objects**
+
+| # | rule | details |
+|---|---|---|
+| 1 | **Draw, don't assemble** | No ellipse bodies, no circle-and-line heads and arms. Each pose of each character is one complete image: pixel styles as palette-indexed character grids written cell by cell; vector / chalk / watercolour styles as paths following a real body outline (shoulders, collar, cuffs, hem, hands) |
+| 2 | **Body checklist** (every pose) | Fixed head-to-body ratio for the whole film (chibi 1:2–1:2.5); shoulders wider than the neck, a trapezoid torso; arms start at the shoulder and have elbows and hands; clothes have collar, sleeves, hem, with trousers/skirt and shoes in separate colours; front, side and back **each drawn separately** (back: back of the hair, back collar, shoulder line); a shadow under the feet; with two people, decide who is in front — no overlapping heads or crossing limbs |
+| 3 | **Fixed sizes, no arbitrary scaling** | 2–3 sizes per film: full body, half body, close-up, **each drawn on its own**. A close-up is a purpose-drawn bust (folds, hands, hair), never a small full-body figure scaled up |
+| 4 | **Motion by frame swaps + moves; the camera brings energy** | Walk 4 frames; wave / cry / laugh 2–3 frames; no rotating line segments for arms; push-ins, pans, parallax and depth of field carry the motion |
+| 5 | **Detail trio** (people, buildings, props) | Outline + 3 tones (light / mid / dark) + material texture (brick joints, tiles, wood grain, cloth folds). Buildings need real parts: window frames, AC units, laundry, signs, house numbers, awnings, window grilles |
+| 6 | **Real everyday objects** | At least 2 objects per place that viewers recognise at once (building signs, a breakfast cart, a for-rent notice, a countdown board, a school gate, a corner shop, shared bikes). **Text inside the scene (signs, dates, numbers, stamps) is detail and allowed**; lyrics still never appear on screen |
+| 7 | **Pixel technique** | Low-res canvas (e.g. 320×180 or 384×216) scaled up by an integer with nearest-neighbour; a fixed 16–32 colour palette; dithering only as texture, never as large fills |
+| 8 | **One shared post layer** (all styles) | Per-layer depth of field, bloom, film grain, vignette, grading, optional letterbox; grading never touches UI. Use one fixed grain texture, not new random grain per frame (it bloats the file) |
+
+**Backgrounds, camera, richness**
+
+| # | rule | details |
+|---|---|---|
+| 9 | **Draw real places** | **Buildings**: wall material (brick, tile, paint, with stains and colour variation) + at least 5 kinds of parts (window frames, grilles, AC units, laundry, balcony plants, wires, signs, house numbers, meters, mailboxes, shutters) + light (low-sun shadows, lit windows, doorway light). **Ground**: tiles, kerbs, manholes, puddles, leaves, parked vehicles. **Night sky**: dark gradient + 3 layers of stars (hundreds of faint dots, dozens of medium, a few bright ones with cross glints) + a milky way or clouds — never a few "×". **Sports ground**: lane lines, grass texture, fences, goals, distant lit windows |
+| 10 | **Fixed sizes ≠ fixed camera** | ① Framing mix: wide 25–35 %, medium 35–45 %, close/close-up 15–25 %, **insert shots** (letter, calendar, phone, breakfast…) ≥ 10 %; never more than 2 in a row at the same framing. ② ≥ 50 % of shots have a slow push/pull, pan or crane, 3–10 % per shot. ③ Size changes come from cutting framings + pushing in; draw assets at the shot's **closest** size, so the camera only ever shrinks them |
+| 11 | **Richness check** (steps 6–7: `tools/review/richness.py`) | Defaults: detail ≥ 5, colours ≥ 30, textured blocks ≥ 50 %, light range across the film ≥ 25, camera zoom + pan ≥ 50 %; rework chapters that fall short. With a reference film, run `--ref reference.mp4`: **the higher of default and reference wins** |
+| 12 | **Layers** | Every shot has foreground / midground / background content (the foreground can be a blurred sign, branch or window frame); something moves in the background; people are not all lined up on one horizon |
+| 13 | **Character scale** | Character height as share of frame: **wide 10–15 %**, **medium ≤ 30 %**; close/close-up only where the storyboard says so (≤ 25 % of shots). Drawing medium shots as "full body fills the frame" turns the place into wallpaper |
+| 14 | **Learn principles from references, don't copy** | Take the principles: scale, detail density, real objects, light, camera rhythm. **Don't copy** canvas size, viewpoint, signature objects and where they sit, face design, text overlays. Things that come from the lyrics may appear, but presented your own way. After the step-5 stills, compare item by item with each reference and change anything too close |
+
+**Relation to v3**: lighting, cutting on phrases, revisiting core places and one metaphor per song all
+still hold. "Cut on-screen text by 80 %" now means floating labels and speech bubbles only; text inside
+the scene stays (rule 6). A permanent HUD is still off by default, but counters (day N, letter N) can
+become objects in the scene (a stamp, a calendar, a numbered envelope).
 
 ---
 
@@ -145,8 +195,8 @@ One row per line (by number — never the lyric):
 - Intros, interludes and outros advance the story or recap it.
 - At least one **interactive hook** per section (a choice box, a message typed and deleted, a save bar,
   an item pop-up).
-- Abstract lines use the one metaphor; concrete lines are told through changes in the place. **Cut
-  on-screen text by 80 %.**
+- Abstract lines use the one metaphor; concrete lines are told through changes in the place. **No floating
+  labels or speech bubbles** (signs, dates and stamps inside the scene are fine — drawing rule 6).
 
 **Self-check**: cover the gist column; do the hooks alone carry the feeling? Guessing every line is
 not required — one strong picture per section beats a sticker per line.
@@ -160,6 +210,9 @@ not required — one strong picture per section beats a sticker per line.
 | shot | time | length | line | hook | framing | camera | beat hit | what keeps moving | must be visible |
 |---|---|---|---|---|---|---|---|---|---|
 
+- **Two required columns (v4)**: **framing** (wide / medium / close / close-up / insert) and **camera
+  move** (push / pull / pan / crane / still). Count the mix when done (rule 10): wide 25–35 %, medium
+  35–45 %, close 15–25 %, insert ≥ 10 %; ≥ 50 % of shots move.
 - **Cut on phrases**: 5–9 s per shot on average; one or two lines per shot. The chorus may cut every
   2–4 beats but needs at least one long take.
 - **Framing**: wide shots only set the place; **the main character's scenes are medium shots**;
@@ -171,31 +224,42 @@ not required — one strong picture per section beats a sticker per line.
 - **Must be visible** and **what keeps moving** for every shot (checked in step 6). A shot with
   nothing moving is not finished.
 
-✋ **Confirm**: rhythm, framing changes, where the long takes are.
+✋ **Confirm**: rhythm, framing mix, camera moves, where the long takes are.
 
 ---
 
 ## Step 5 · Style and emotion test ✋ → `STYLE_GUIDE.md` + stills + test clip
 
 **5.1 Pick a style that passes the emotion test**: faces that cry, laugh, blush, look surprised;
-bodies that hug, reach, fall. Two styles ship with this repo:
+bodies that hug, reach, fall. Two render pipelines ship with this repo:
 
 | style | folder | suits | tech |
 |---|---|---|---|
 | 8bit pixel | `styles/pixel8bit` | nostalgic, game-like, sweet, story songs | numpy + Pillow, 320×180 ×6 |
 | flat chibi | `styles/flatq` | everyday, city, upbeat songs | skia vector, 1920×1080 |
 
+Their **characters are parametric starter versions**; per the drawing rules, draw characters and places
+for each film and reuse the pipeline, lighting, grading and particles.
+
 Shadow puppets, paper cut and ink wash cannot act emotions; use them only for a film-within-the-film,
 memories or transitions. Photorealism cannot be drawn by code and is out of scope.
 
 **5.2 Rules** (in `STYLE_GUIDE.md`): palettes per mood/time, light rules, textures; ≥ 6 expressions
-per lead + symbols above heads; three layers per place, ≥ 3 props, something moving; character sizes
-(pixel8bit head height: wide 14, medium 24–34, close 44, extreme close ≥ 36).
+per lead + symbols above heads; three layers per place, ≥ 3 props, something moving; character scale per
+rule 13 (wide 10–15 % of frame height, medium ≤ 30 %), with full / half / close-up drawn separately (rule 3).
 
-**5.3 Stills and test clip**: character sheet, 3–4 key frames, **one complete 5–8 s emotional shot**
+**5.3 Sheets, stills and test clip**
+- ✋ **Character sheet** (v4): every pose of every character (front / side / back / sitting / walking /
+  waving / holding hands / hugging) + close-up bust + expressions on one sheet, next to the reference
+  film's characters if there is one; go through the body checklist (rule 2). **No building until it passes.**
+- **Scene-parts sheet** (v4): each core place's buildings and props on their own — outline + 3 tones +
+  material, real parts, everyday objects (rules 5, 6, 9).
+- With a reference film: compare the stills item by item (rule 14) and run `richness.py` on the reference
+  to set this film's thresholds (rule 11).
+- 3–4 key frames, **one complete 5–8 s emotional shot**
 with the song. Only start building when the emotion really plays.
 
-✋ **Confirm**: the look, the characters, the test clip.
+✋ **Confirm**: character sheet, scene-parts sheet, the look, the test clip.
 
 ---
 
@@ -241,7 +305,12 @@ python src/make.py --jobs 4                   # 1080p final -> out/final.mp4
 3. **Shot-by-shot check** (before showing any preview): `tools/review/shot_check.py` — the middle frame
    of each shot next to "must be visible"; look at the phone-size version too. Anything written but
    not drawn, or drawn but unreadable, is fixed now.
-4. **Polish**: the token, hands, letters get their own pass in close-ups; backgrounds get texture and
+4. **Drawing check** (v4): look at each middle frame at 100 % — ellipse bodies, line arms, overlapping
+   heads, wrong back views, "a building made of lines", a small figure scaled up as a close-up: all get
+   reworked. Measure character height against rule 13 while you are there.
+5. **Richness check** (v4): `python tools/review/richness.py out/chN.mp4` (add `--ref` with a reference
+   film); rework anything marked `LOW` (rule 11).
+6. **Polish**: the token, hands, letters get their own pass in close-ups; backgrounds get texture and
    small hand-made details (signs, clutter, laundry), no large flat areas; check the palettes.
 
 **Parallel work**: where sub-agents are available (e.g. Claude Code), split chapters between them once
@@ -254,6 +323,7 @@ python src/make.py --jobs 4                   # 1080p final -> out/final.mp4
 Render 1080p with the song, then:
 ```bash
 python tools/review/metrics.py out/final.mp4                 # five picture metrics
+python tools/review/richness.py out/final.mp4                # v4: detail, colours, texture, light range, camera
 python tools/review/contact_sheet.py out/final.mp4           # 20 evenly spaced frames
 python tools/review/subtitle_safe.py out/final.mp4 --timing work/timing.json
 ```
@@ -270,7 +340,7 @@ pastel songs naturally sit brighter and less saturated. `look` means "worth a lo
 | static seconds | share of seconds that barely move | ≤ 20 % (references 20–23 %) |
 | average shot length | cuts detected automatically | 5–9 s, cut on phrases |
 
-✋ **Confirm**: send the first cut, the contact sheet and the metrics.
+✋ **Confirm**: send the first cut, the contact sheet, the metrics and the richness report.
 
 ---
 
@@ -316,3 +386,22 @@ lighting with a brightness floor. **The main character must always read.**
 Earlier (v1 → v2): a shadow-puppet MV with an invented private metaphor had a good idea but the
 audience couldn't read it, puppets couldn't act, and storyboard details vanished in the render. That is
 why the per-line picture table, the emotion test and the shot-by-shot check exist.
+
+v4: two well-received MVs of the same song were compared shot by shot with our v3 film (a dorm street,
+a school building at night, a starry sports ground) and measured with a script (that script is now
+`richness.py`):
+
+| metric (one frame every 3 s) | reference A (detailed pixel) | reference B (cinematic, heavy blur) | ours v3 |
+|---|---|---|---|
+| detail | 8.0 | 4.0 | **3.5** |
+| colours | 35 | 35 | **25** |
+| textured blocks | 70 % | 49 % | **35 %** |
+| light range across the film | 34 | 47 | **12** |
+| time zooming | 10 % | 64 % | **9 %** |
+| time panning | 14 % | 81 % | **23 %** |
+
+Conclusion: **the gap is not a missing asset kit but the way people and buildings are drawn** — plus a
+static camera and flat light. Hence the 14 drawing rules. Two were added while making v4 films:
+characters drawn too big (medium shots filling half the frame, the place reduced to wallpaper) → rule
+13; copying a reference's canvas size, viewpoint and signature objects until it looked too similar →
+rule 14.

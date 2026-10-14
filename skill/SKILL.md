@@ -37,6 +37,9 @@ Ready-to-copy projects that already render: `templates/starter-pixel8bit`, `temp
    contact sheet, short preview) — unless they said "just make it".
 3. **The main character must be readable in every shot at phone size.**
 4. Invent original characters; never draw known characters, logos or album art.
+5. **Draw, don't assemble (v4).** The shipped styles' character functions are starter versions; for a
+   real film draw each pose as a complete sprite / path, show the user a character sheet and get approval
+   before building (AGENTS.md › Drawing rules). Check richness with `tools/review/richness.py`.
 
 ## Talking to non-technical users
 

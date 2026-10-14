@@ -35,6 +35,19 @@ v3 那版失败的样片是 v3.1 最重要的一条规则的来源：**任何时
 
 光和颜色已经到参考片的水平（暗场 36–53%、饱和度约 0.53）；镜头内动态和静止秒数还有距离（参考值 ≥ 1.0 / ≤ 20 %），下一版可以多加视差层和粒子。
 
+## 按 v4 标准还差什么 / What v4 would change
+
+这支是 v3.1 做的，留在这里作为**流程**的完整范例（故事 → 逐句画面 → 分镜 → 代码）。按工作流 v4「造型规范」，它的**画法**不达标：
+This film is v3.1 work, kept as a full example of the *process*. By the v4 drawing rules its *drawing* falls short:
+
+- 人物是程序拼装的（圆头、椭圆身体、线条胳膊），背影和特写没有单独画 / characters are assembled from shapes; no separately drawn back views or close-ups
+- 两人同框时有头叠头；废墟和楼是几何块 / heads overlap in two-shots; ruins and buildings are geometric blocks
+- `tools/review/richness.py`（v4 规则 11）：
+
+| detail 细节量 | colors 颜色数 | textured 纹理 % | light_range 明暗起伏 | camera_move 镜头运动 % |
+|---|---|---|---|---|
+| 2.75（≥ 5） | 18（≥ 30） | 45.2（≥ 50） | 66.7（≥ 25） | 17（≥ 50） |
+
 ## 文件
 - `docs/` — STORY、MUSIC_MAP、LYRIC_SHOTS（v1 逐句画面表）、STYLE_GUIDE、STORYBOARD（v3.1 实际镜头，从代码生成）
 - `src/w3.py` — 全片共用：人物合成、4 个核心场景；`c1.py`–`c6.py`、`seg.py` — 各章镜头

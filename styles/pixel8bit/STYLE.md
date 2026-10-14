@@ -2,6 +2,9 @@
 
 规则来自《小镇姑娘》《蝴蝶》《告白气球》几轮重做。Rules learned over several rebuilds.
 
+> v4：下面是 v3.1 时期的画风规则，仍然有效；人物和场景的画法以工作流「造型规范」为准（逐格 / 逐笔画，不拼装）。
+> v4: these v3.1 style rules still hold; for how to draw people and places, the workflow's drawing rules win.
+
 ## Pixels / 像素
 - Move by whole pixels only. "Push in" by drawing a bigger version, never by smooth scaling.
   只按整像素移动；推近靠换更大的画，不做平滑缩放。

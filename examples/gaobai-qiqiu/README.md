@@ -33,6 +33,19 @@
 
 粉彩风饱和度天然偏低；镜头内动态和静止秒数离参考值（≥ 1.0 / ≤ 20 %）还有距离 —— 这是这支片子还能继续改的地方，欢迎提 PR。
 
+## 按 v4 标准还差什么 / What v4 would change
+
+这支是 v3.1 做的，留在这里作为**流程**的完整范例（故事 → 逐句画面 → 分镜 → 代码）。按工作流 v4「造型规范」，它的**画法**不达标：
+This film is v3.1 work, kept as a full example of the *process*. By the v4 drawing rules its *drawing* falls short:
+
+- 人物是程序拼装的（圆头、椭圆身体、线条胳膊），背影和特写没有单独画 / characters are assembled from shapes; no separately drawn back views or close-ups
+- 楼房和街景构件偏少，镜头大多固定 / buildings have few parts; most shots are static
+- `tools/review/richness.py`（v4 规则 11）：
+
+| detail 细节量 | colors 颜色数 | textured 纹理 % | light_range 明暗起伏 | camera_move 镜头运动 % |
+|---|---|---|---|---|
+| 4.61（≥ 5） | 26（≥ 30） | 52.7（≥ 50） | 54.5（≥ 25） | 16（≥ 50） |
+
 ## 文件
 - `docs/` — STORY（故事）、MUSIC_MAP（段落）、LYRIC_SHOTS（v1 逐句画面表）、STYLE_GUIDE（风格）、STORYBOARD（v3.1 实际镜头，从代码生成）
 - `src/gb2.py` — v3.1 的 38 个镜头；`gbl.py` 本片零件（铁塔、楼房、咖啡馆、气球、进度条）；`g1–g5.py` v1 的场景函数（被 v3.1 复用）

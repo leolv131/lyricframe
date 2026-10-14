@@ -3,6 +3,9 @@
 1920×1080 矢量画面（skia），描边 + 扁平色 + 纸张颗粒 + 网点。适合日常、城市、轻快的歌。
 Flat vector chibi style at 1920×1080 with skia: outlines, flat fills, paper grain, halftone.
 
+> **v4 说明 / note**：本工具包的**渲染、布光、调色、粒子、界面、字幕**可直接复用；**角色函数是参数化拼装的入门版**（适合快速试效果）。按工作流 v4「造型规范」，正式做片时请为每支片逐格画人物精灵图（每个姿势、背影、特写各一张）和场景零件。
+> The render pipeline, lighting, grading, particles, UI and titles are reusable; **the character functions are parametric starter versions**. Per the v4 drawing rules, draw each film's characters as sprites (every pose, back view, close-up) and its places part by part.
+
 Built for a Henan road-trip song (an electric bike, a pink helmet, a map of 18 cities); the
 props and scene parts from that film are kept in `fq_scenes.py` / `props.py` as examples.
 

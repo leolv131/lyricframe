@@ -3,6 +3,9 @@
 320×180 的像素画布，最近邻放大 6 倍输出 1920×1080，30fps。Python + numpy + Pillow，不需要显卡。
 A 320×180 pixel canvas upscaled ×6 to 1920×1080. Python + numpy + Pillow, no GPU.
 
+> **v4 说明 / note**：本工具包的**渲染、布光、调色、粒子、界面、字幕**可直接复用；**角色函数是参数化拼装的入门版**（适合快速试效果）。按工作流 v4「造型规范」，正式做片时请为每支片逐格画人物精灵图（每个姿势、背影、特写各一张）和场景零件。
+> The render pipeline, lighting, grading, particles, UI and titles are reusable; **the character functions are parametric starter versions**. Per the v4 drawing rules, draw each film's characters as sprites (every pose, back view, close-up) and its places part by part.
+
 Used for: 《告白气球》, 《蝴蝶》 (see `examples/`). Rendering ≈ 1 s of 1080p per second of video on 2 cores.
 
 ## Files / 文件
@@ -28,7 +31,7 @@ A complete starting project that already renders is in [`templates/starter-pixel
 - `who`: `boy` `girl` `man` `woman` `kid` `he` `she` `npc` `npc_g` `post` (+ the two leads of 《蝴蝶》: `wu`, `die`). Add your own by copying an entry in `chars.LOOK` (hair style, top, bottom, dress/coat).
 - poses: `stand walk run jump sit wave clap hold_l hold_r give take reach cheer hand_chest arms_down`
 - expressions: `normal smile happy joy shy peek wonder surprise stunned forced sad hesitate swallow cry look_up wave_smile`, or a dict (`eyes`, `mouth`, `brow`, `blush`, `tear`, `wet`, `look`).
-- sizes (head height `Hh`): wide 14 · medium 24–34 · close 44 · extreme close ≥ 36 (fine eyes, highlights, tears switch on automatically).
+- sizes (head height `Hh`): wide 14 · medium 24–34 · close 44 · extreme close ≥ 36 (fine eyes, highlights, tears switch on automatically). *(v3.1 starter sizes; v4 sizes characters by share of frame height — wide 10–15 %, medium ≤ 30 %.)*
 
 ## Minimal shot / 最小镜头
 

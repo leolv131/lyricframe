@@ -1,5 +1,8 @@
 # flatq · STYLE
 
+> v4：下面是 v3.1 时期的画风规则，仍然有效；人物和场景的画法以工作流「造型规范」为准（逐格 / 逐笔画，不拼装）。
+> v4: these v3.1 style rules still hold; for how to draw people and places, the workflow's drawing rules win.
+
 - Outlines 5 px in deep purple-brown `#2b1d2e`; flat fills with one shadow tone; no gradients on
   characters. Backgrounds may use soft vertical gradients and halftone dots.
 - Paper grain and a light vignette are applied in `Frame.array()` — keep them on for every frame

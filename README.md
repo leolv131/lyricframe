@@ -26,6 +26,11 @@ line, storyboard — then draws every frame in code and puts the original song u
 Full code, story and storyboard for both are in `examples/`. The songs and lyrics are not included
 (copyright).
 
+> **Note (v4)**: these two were made with the v3.1 workflow, and their characters are still *assembled*
+> by code (circle head, ellipse body, line arms). The workflow is now v4: characters and places are
+> *drawn* cell by cell / stroke by stroke — see "Drawing rules" below. Films made the v4 way (a 16-bit
+> pixel pipeline) will be added as new examples.
+
 ## Three ways to use it
 
 ### ① Claude app — no technical skills needed
@@ -84,6 +89,17 @@ The rules that matter most (from frame-by-frame comparisons with well-received A
 - **Fewer cuts, always moving** — cut on phrases; something moves in every shot.
 - **One metaphor per song**, 3–4 core places revisited in different light and weather.
 - **The main character must always be clearly visible.**
+- **(v4) Draw, don't assemble** — every pose, back view and close-up drawn on its own; buildings with
+  window frames, AC units, laundry; varied framing and a camera that keeps drifting.
+- **(v4) Measure richness** — detail, colour, texture, light range and camera movement, checked by
+  `tools/review/richness.py`.
+
+### Drawing rules (v4)
+
+The two shipped styles (`pixel8bit`, `flatq`) provide the render pipeline, lighting, grading, particles
+and subtitles; their **characters are parametric starter versions**, fine for quick tests. For a real
+film the AI first shows you a **character sheet** (every pose, back view, close-up, expressions) and
+only builds once you approve it. The 14 rules: [docs/en/workflow.md › Drawing rules](docs/en/workflow.md#drawing-rules-v4-every-style).
 
 Full workflow: [docs/en/workflow.md](docs/en/workflow.md) · checklist: [docs/en/checklist.md](docs/en/checklist.md)
 
@@ -93,10 +109,10 @@ Full workflow: [docs/en/workflow.md](docs/en/workflow.md) · checklist: [docs/en
 AGENTS.md / CLAUDE.md   the director's manual the AI follows
 docs/                   full workflow and checklist (中文 / English)
 templates/              story, per-line pictures, storyboard templates + runnable starter projects (one per style)
-styles/pixel8bit/       8bit pixel toolkit (characters, expressions, places, lighting, UI, render) + fonts
-styles/flatq/           flat chibi toolkit (skia vector) + fonts
+styles/pixel8bit/       8bit pixel toolkit (render, lighting, places, UI; starter characters) + fonts
+styles/flatq/           flat chibi toolkit (skia vector; starter characters) + fonts
 tools/lyrics_timing/    .lrc → timing, beats & sections, speech-recognition alignment, subtitle burning
-tools/review/           five picture metrics, contact sheets, shot-by-shot check, subtitle-safe check
+tools/review/           five picture metrics, richness check (v4), contact sheets, shot-by-shot check, subtitle-safe check
 tools/package/          covers (landscape / portrait), top-bottom comparison
 examples/               two complete projects
 demo/                   generates a free demo song with original lyrics
